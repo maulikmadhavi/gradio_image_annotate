@@ -30,9 +30,9 @@ def save_label_dict():
 def record_input(fname: str, gen_label: str, age_label: str, view_label: str):
     if gen_label and age_label and view_label:
         label_dict[fname] = {
-            "gender": gen_label,
-            "age": age_label,
-            "view": view_label,
+            "gender": gen_label[0],
+            "age": age_label[0],
+            "view": view_label[0],
         }
         save_label_dict()
     # try:    
@@ -61,7 +61,7 @@ with gr.Blocks() as demo:
     
     with gr.Row():        
         gen = gr.CheckboxGroup(["Male", "Female"], label="Gender")
-        age = gr.Slider(0, 100, value=25, label="Age")
+        age = gr.CheckboxGroup(["Young", "Middle", "Old"], label="Age")
         view = gr.CheckboxGroup(["Front", "Side", "Back"], label="View")
     
     submit_btn = gr.Button("Submit")
